@@ -1,6 +1,27 @@
+@extends('layout')
+@section('content')
 <h2>
     {{$listing['title']}}
+</h2>
+<h1>
+    {{$listing['email']}}
+</h1>
+<h2>
+    {{$listing['tags']}}
+</h2>
+<h2>
+    {{$listing['heading']}}
+</h2>
+<h2>
+    {{$listing['company']}}
+</h2>
+<h2>
+    {{$listing['location']}}
+</h2>
+<h2>
+    {{$listing['website']}}
 </h2>
 <p>
     {{$listing['description']}}
 </p>
+@endsection
