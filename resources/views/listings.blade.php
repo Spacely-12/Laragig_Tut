@@ -1,29 +1,55 @@
 @extends('layout')
+
 @section('content')
-<div class="max-w-3xl mx-auto p-6 bg-white shadow-md rounded-lg">
-    <h2 class="text-3xl font-bold text-gray-800 mb-4">
-        {{$listings['title']}}
-    </h2>
-    <h1 class="text-lg text-gray-600 mb-2">
-        <span class="font-medium">Email:</span> {{$listing['email']}}
-    </h1>
-    <h2 class="text-sm text-gray-500 mb-2">
-        <span class="font-medium">Tags:</span> {{$listing['tags']}}
-    </h2>
-    <h2 class="text-2xl text-gray-700 mb-2">
-        {{$listing['heading']}}
-    </h2>
-    <h2 class="text-xl text-gray-700 mb-2">
-        <span class="font-medium">Company:</span> {{$listing['company']}}
-    </h2>
-    <h2 class="text-lg text-gray-600 mb-2">
-        <span class="font-medium">Location:</span> {{$listing['location']}}
-    </h2>
-    <h2 class="text-lg text-indigo-600 mb-4">
-        {{$listing['website']}} 
-    </h2>
-    <p class="text-gray-700 leading-relaxed">
-        {{$listing['description']}}
-    </p>
-</div>
+    @include('partials/_back')
+    @include('/partials/_hero')
+    @include('/partials/_search')
+
+
+
+    <div class="flex justify-center -mt-2">
+        <h1 class="text-3xl mt-3 font-bold">{{ $heading }}</h1>
+    </div>
+    <div class="lg:grid lg:grid-cols-2 gap-4 space-y-4 md:space-y-0 mx-4 mt-4">
+
+        @unless (count($listings) == 0)
+            @foreach ($listings as $listing)
+                <div class="bg-gray-50 border border-gray-200 rounded p-6">
+                    <div class="flex">
+                        <img class="hidden w-48 mr-6 md:block" src="{{ asset('images/no-image.png') }}" alt="" />
+                        <div>
+                            <h3 class="text-2xl">
+                                <a href="/listings/{{ $listing->id }}">{{ $listing->company }}</a>
+                            </h3>
+                            <div class="text-xl font-bold mb-4">{{ $listing->title }}</div>
+                            <ul class="flex">
+                                <li
+                                    class="flex items-center justify-center bg-black text-white rounded-xl py-1 px-3 mr-2 text-xs">
+                                    <a href="#">Laravel</a>
+                                </li>
+                                <li
+                                    class="flex items-center justify-center bg-black text-white rounded-xl py-1 px-3 mr-2 text-xs">
+                                    <a href="#">API</a>
+                                </li>
+                                <li
+                                    class="flex items-center justify-center bg-black text-white rounded-xl py-1 px-3 mr-2 text-xs">
+                                    <a href="#">Backend</a>
+                                </li>
+                                <li
+                                    class="flex items-center justify-center bg-black text-white rounded-xl py-1 px-3 mr-2 text-xs">
+                                    <a href="#">Vue</a>
+                                </li>
+                            </ul>
+                            <div class="text-lg mt-4">
+                                <i class="fa-solid fa-location-dot"></i> {{ $listing->location }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        @else
+            <p>No Listing Found</p>
+        </div>
+    @endunless
+
 @endsection

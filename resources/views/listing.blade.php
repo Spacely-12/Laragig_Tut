@@ -1,27 +1,16 @@
 @extends('layout')
 @section('content')
-<h2>
-    {{$listing['title']}}
-</h2>
-<h1>
-    {{$listing['email']}}
-</h1>
-<h2>
-    {{$listing['tags']}}
-</h2>
-<h2>
-    {{$listing['heading']}}
-</h2>
-<h2>
-    {{$listing['company']}}
-</h2>
-<h2>
-    {{$listing['location']}}
-</h2>
-<h2>
-    {{$listing['website']}}
-</h2>
-<p>
-    {{$listing['description']}}
-</p>
+@include('partials/_back')
+@include('partials/_search')
+
+
+<div class="max-w-3xl mx-auto p-6 bg-white shadow-md rounded-lg">
+    <h2 class="text-3xl font-bold text-gray-800 mb-4">
+        {{$listing['title']}}
+    </h2>
+    <h1 class="text-lg text-gray-600 mb-2">
+        <span class="font-medium">Email:</span> {{$listing['email']}}
+    </h1>
+    
+</div>
 @endsection
