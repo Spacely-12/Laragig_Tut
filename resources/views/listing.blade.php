@@ -1,16 +1,40 @@
 @extends('layout')
 @section('content')
-@include('partials/_back')
-@include('partials/_search')
+    @include('partials/_back')
+    @include('partials/_search')
 
+    <div class="mx-4">
+        <x-card class="p-40">
+            <div class="flex flex-col items-center justify-center text-center text-white">
+                <img class="w-48 mr-6 mb-6 rounded-md bg-[#0a1931] shadow-md" src="{{ asset('images/no-image.png') }}" alt="" />
 
-<div class="max-w-3xl mx-auto p-6 bg-white shadow-md rounded-lg">
-    <h2 class="text-3xl font-bold text-gray-800 mb-4">
-        {{$listing['title']}}
-    </h2>
-    <h1 class="text-lg text-gray-600 mb-2">
-        <span class="font-medium">Email:</span> {{$listing['email']}}
-    </h1>
-    
-</div>
+                <h3 class="text-3xl font-bold mb-2">{{ $listing->title }}</h3>
+                <div class="text-xl font-semibold mb-4 text-[#82a4d9]">{{ $listing->company }}</div>
+
+                <x-listing-tags :tagsCsv="$listing->tags" />
+
+                <div class="text-lg my-4 text-[#82a4d9]">
+                    <i class="fa-solid fa-location-dot"></i> {{ $listing->location }}
+                </div>
+                <div class="border border-[#162a4a] w-full mb-6"></div>
+                <div>
+                    <h3 class="text-3xl font-bold mb-4 text-[#82a4d9]">
+                        Job Description
+                    </h3>
+                    <div class="text-lg space-y-6">
+                        <p class="text-[#b1c3de]">
+                            {{ $listing->description }}
+                        </p>
+                        <a href="mailto:{{ $listing->email }}"
+                            class="block bg-[#1c3b72] text-white mt-6 py-2 rounded-xl hover:opacity-90 shadow-sm transition-opacity duration-200"><i
+                                class="fa-solid fa-envelope"></i> Contact Employer</a>
+
+                        <a href="{{ $listing->website }}" target="_blank"
+                            class="block bg-[#0a1931] text-white py-2 rounded-xl hover:opacity-90 shadow-sm transition-opacity duration-200"><i
+                                class="fa-solid fa-globe"></i> Visit Website</a>
+                    </div>
+                </div>
+            </div>
+        </x-card>
+    </div>
 @endsection

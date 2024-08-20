@@ -16,6 +16,11 @@
                 extend: {
                     colors: {
                         laravel: "#ef3b2d",
+                        navy: "#376abc",
+                        deepNavy: "#051024",
+                        lightNavy: "#162a4a",
+                        skyBlue: "#82a4d9",
+                        lightSkyBlue: "#b1c3de",
                     },
                 },
             },
@@ -24,33 +29,33 @@
     <title>LaraGigs | Find Laravel Jobs & Projects</title>
 </head>
 
-<body class="mb-48">
-    <nav class="flex justify-between items-center mb-4">
-        <a href="/"><img class="w-24" src="{{asset('images/logo.png')}}" alt="" class="logo" /></a>
+<body class="mb-48 text-white">
+    <nav class="flex justify-between items-center mb-4 px-6 py-4 bg-lightNavy shadow-md">
+        <a href="/">
+            <img class="w-24" src="{{asset('images/logo.png')}}" alt="LaraGigs Logo" class="logo" />
+        </a>
         <ul class="flex space-x-6 mr-6 text-lg">
             <li>
-                <a href="register.html" class="hover:text-laravel"><i class="fa-solid fa-user-plus"></i> Register</a>
+                <a href="register.html" class="hover:text-skyBlue"><i class="fa-solid fa-user-plus"></i> Register</a>
             </li>
             <li>
-                <a href="login.html" class="hover:text-laravel"><i class="fa-solid fa-arrow-right-to-bracket"></i>
-                    Login</a>
+                <a href="login.html" class="hover:text-skyBlue"><i class="fa-solid fa-arrow-right-to-bracket"></i> Login</a>
             </li>
         </ul>
     </nav>
 
-    <body>
+    <main>
         {{-- view output --}}
+        @yield('content')
+    </main>
 
-        <main>
-            @yield('content')
-
-            <footer
-                class="fixed bottom-0 left-0 w-full flex items-center justify-start font-bold bg-laravel text-white h-24 mt-24 opacity-90 md:justify-center">
-                <p class="ml-2">Copyright &copy; 2024, All Rights reserved</p>
-
-                <a href="create.html" class="absolute top-1/3 right-10 bg-black text-white py-2 px-5">Post Job</a>
-            </footer>
-        </main>
-    </body>
+    <footer
+        class="fixed bottom-0 left-0 w-full flex items-center justify-start font-bold bg-lightNavy text-white h-24 mt-24 md:justify-center shadow-md">
+        <p class="ml-2">Copyright &copy; 2024, All Rights Reserved</p>
+        <a href="create.html"
+            class="absolute top-1/3 right-10 bg-skyBlue text-black py-2 px-5 rounded-xl hover:opacity-90 shadow-sm transition-opacity duration-200">Post
+            Job</a>
+    </footer>
+</body>
 
 </html>
