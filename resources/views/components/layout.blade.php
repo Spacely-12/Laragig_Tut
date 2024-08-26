@@ -10,6 +10,7 @@
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="//unpkg.com/alpinejs" defer></script>
     <script>
         tailwind.config = {
             theme: {
@@ -30,23 +31,25 @@
 </head>
 
 <body class="mb-48 text-white">
+    <x-flash-message class="bg-red"/>
     <nav class="flex justify-between items-center mb-4 px-6 py-4 bg-lightNavy shadow-md">
         <a href="/">
-            <img class="w-24" src="{{asset('images/logo.png')}}" alt="LaraGigs Logo" class="logo" />
+            <img class="w-24" src="{{ asset('images/logo.png') }}" alt="LaraGigs Logo" class="logo" />
         </a>
         <ul class="flex space-x-6 mr-6 text-lg">
             <li>
                 <a href="register.html" class="hover:text-skyBlue"><i class="fa-solid fa-user-plus"></i> Register</a>
             </li>
             <li>
-                <a href="login.html" class="hover:text-skyBlue"><i class="fa-solid fa-arrow-right-to-bracket"></i> Login</a>
+                <a href="login.html" class="hover:text-skyBlue"><i class="fa-solid fa-arrow-right-to-bracket"></i>
+                    Login</a>
             </li>
         </ul>
     </nav>
 
     <main>
         {{-- view output --}}
-        {{$slot}}
+        {{ $slot }}
     </main>
 
     <footer
@@ -56,6 +59,8 @@
             class="absolute top-1/3 right-10 bg-skyBlue text-black py-2 px-5 rounded-xl hover:opacity-90 shadow-sm transition-opacity duration-200">Post
             Job</a>
     </footer>
+   
+
 </body>
 
 </html>

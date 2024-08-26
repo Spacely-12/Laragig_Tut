@@ -2,6 +2,7 @@
     {{-- @include('partials/_back') --}}
     @include('/partials/_hero')
     @include('/partials/_search')
+    
 
     <div class="bg-white p-4"> <!-- This div wraps the entire content and sets the background -->
         <div class="flex justify-center -mt-2">
