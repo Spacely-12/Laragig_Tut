@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('listings', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
             $table->string('tags');
-            $table->string('heading');
+            $table->string('title');
+            $table->string('logo')->nullable();
+            // $table->string('heading')->nullable();
             $table->string('company');
             $table->string('location');
             $table->string('email');
@@ -30,9 +31,11 @@ return new class extends Migration
      */
     public function down(): void
     {
-        if (Schema::hasTable('listings')) {
-            Schema::dropIfExists('listings');
-        }
+
+        Schema::dropIfExists('listings');
+        // if (Schema::hasTable('listings')) {
+           
+        // }
     }
     
 };

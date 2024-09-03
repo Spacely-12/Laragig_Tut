@@ -59,7 +59,7 @@
             class="absolute top-1/3 right-10 bg-skyBlue text-black py-2 px-5 rounded-xl hover:opacity-90 shadow-sm transition-opacity duration-200">Post
             Job</a>
     </footer>
-   
+   <x-flash-message />
 
 </body>
 

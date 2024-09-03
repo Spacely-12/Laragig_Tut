@@ -8,38 +8,39 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Listing extends Model
 {
-    
+
     use HasFactory;
 
     protected $fillable = [
-        'title', 
-        'tags', 
+        'title',
+        'logo',
+        'tags',
         'company',
         'location',
         'email',
         'website',
-        'description'];
+        'description'
+    ];
 
 
     public function scopeFilter($query, array $filters)
-    { 
-     //dd($filters['tag']);
+    {
+        //dd($filters['tag']);
         // if ($filters['tags'] ?? false){
         //     $query->where('tags', 'like', '%' . request('tag') . '%');
         // }
-       // return view('listings/index');
+        // return view('listings/index');
 
-       if ($filters['tag'] ?? false) {
-        $query->where('tags', 'like', '%' . $filters['tag'] . '%');
-    }
+        if ($filters['tag'] ?? false) {
+            $query->where('tags', 'like', '%' . $filters['tag'] . '%');
+        }
 
-    if ($filters['search'] ?? false) {
-        $query->where('title', 'like', '%' . $filters['search'] . '%')
-        ->orWhere('description', 'like', '%' . $filters['search'] . '%')
-        ->orWhere('tags', 'like', '%' . $filters['search'] . '%')
-        ->orWhere('company', 'like', '%' . $filters['search'] . '%')
-        ->orWhere('location', 'like', '%' . $filters['search'] . '%');
+        if ($filters['search'] ?? false) {
+            $query->where('title', 'like', '%' . $filters['search'] . '%')
+                ->orWhere('description', 'like', '%' . $filters['search'] . '%')
+                ->orWhere('tags', 'like', '%' . $filters['search'] . '%')
+                ->orWhere('company', 'like', '%' . $filters['search'] . '%')
+                ->orWhere('location', 'like', '%' . $filters['search'] . '%');
+        }
     }
-    }   
 }
-

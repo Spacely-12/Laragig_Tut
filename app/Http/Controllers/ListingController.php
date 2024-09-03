@@ -18,8 +18,8 @@ class ListingController extends Controller
         return view(
             'listings.index',
             [
-                'listings' => Listing::latest()->filter(request(['tag', 'search']))->paginate(10)
-                                                                                    //simplePaginate
+                'listings' => Listing::latest()->filter(request(['tag', 'search']))->Paginate(8)
+                //simplePaginate
             ]
         );
     }
@@ -38,54 +38,67 @@ class ListingController extends Controller
         return view('listings.create');
     }
 
+    //store forms data
     public function store(Request $request)
     {
+        // dd($request->file('logo')->store());
         $formFields = $request->validate([
             'title' => 'required',
-            'company' => ['required', Rule::unique('listings', 'company')],
+            'company' => 'required',
             'location' => 'required',
             'email' => 'required',
-            'website' => ['required', Rule::unique('listings', 'website')],
+            'website' => 'required',
             'tags' => 'required',
             'description' => 'required'
         ]);
 
+        // if($request->hasFile('logo')) {
+        //     $formFields['logo'] = $request->file('logo')->store('logos', 'public');
+        // }
+
+        if ($request->hasFile('logo')) {
+            $formFields['logo'] = $request->file('logo')->store('logos', 'public');
+        }
+        
         Listing::create($formFields);
 
-   return redirect('/')->with('message', 'Listing Created Successfully');
-//     }
-// //show edit form
-// public function edit(Listing $listing)
-// {
-//     return view('listings.edit', [
-//         'listing' => $listing
-//     ]);
-// }
 
-// //update listing
-// public function update(Request $request, Listing $listing)
-// {
-//     $formFields = $request->validate([
-//         'title' => 'required',
-//         'company' => ['required', Rule::unique('listings', 'company')->ignore($listing->id)],
-//         'location' => 'required',
-//         'email' => 'required',
-//         'website' => ['required', Rule::unique('listings', 'website')->ignore($listing->id)],
-//         'tags' => 'required',
-//         'description' => 'required'
-//     ]);
+        session()->flash('message');
 
-//     $listing->update($formFields);
+        return redirect('/')->with('message', 'Listing Created Successfully');
+        //     }
+        // //show edit form
+        // public function edit(Listing $listing)
+        // {
+        //     return view('listings.edit', [
+        //         'listing' => $listing
+        //     ]);
+        // }
 
-//     return redirect('/')->with('status', 'Listing Updated Successfully');
-// }
+        // //update listing
+        // public function update(Request $request, Listing $listing)
+        // {
+        //     $formFields = $request->validate([
+        //         'title' => 'required',
+        //         'company' => ['required', Rule::unique('listings', 'company')->ignore($listing->id)],
+        //         'location' => 'required',
+        //         'email' => 'required',
+        //         'website' => ['required', Rule::unique('listings', 'website')->ignore($listing->id)],
+        //         'tags' => 'required',
+        //         'description' => 'required'
+        //     ]);
 
-// //delete listing
-// public function destroy(Listing $listing)
-// {
-//     $listing->delete();
+        //     $listing->update($formFields);
 
-//     return redirect('/')->with('status', 'Listing Deleted Successfully');
-// }
-}
+        //     return redirect('/')->with('status', 'Listing Updated Successfully');
+        // }
+
+        // //delete listing
+        // public function destroy(Listing $listing)
+        // {
+        //     $listing->delete();
+
+        //     return redirect('/')->with('status', 'Listing Deleted Successfully');
+        // }
+    }
 }

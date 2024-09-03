@@ -1,7 +1,8 @@
 @props(['listing'])
 <x-card>
 
-    <img class="hidden w-48 mr-6 md:block rounded-lg bg-[#0a1931] shadow-md" src="{{ asset('images/no-image.png') }}"
+    <img class="hidden w-48 mr-6 md:block rounded-lg bg-[#0a1931] shadow-md" 
+    src="{{$listing->logo ? asset ('storage/' . $listing->logo) : asset('/images/no-image.png') }}"
         alt="No image available" />
     <div>
         <h3 class="text-2xl font-semibold text-[#b1c3de]">

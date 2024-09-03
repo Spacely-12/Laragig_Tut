@@ -20,7 +20,7 @@ class ListingFactory extends Factory
             'title' => $this->faker->sentence(),
             'tags' => 'backend, php, laravel',
             'company' =>$this->faker->company(),
-            'heading' => 'Join Our Backend Team!',
+            // 'heading' => 'Join Our Backend Team!',
             'email' =>$this->faker->companyEmail(),
             'website' =>$this->faker->url(),
             'location' =>$this->faker->city(),
