@@ -59,46 +59,44 @@ class ListingController extends Controller
         if ($request->hasFile('logo')) {
             $formFields['logo'] = $request->file('logo')->store('logos', 'public');
         }
-        
+
         Listing::create($formFields);
 
 
         session()->flash('message');
 
         return redirect('/')->with('message', 'Listing Created Successfully');
-        //     }
-        // //show edit form
-        // public function edit(Listing $listing)
-        // {
-        //     return view('listings.edit', [
-        //         'listing' => $listing
-        //     ]);
-        // }
-
-        // //update listing
-        // public function update(Request $request, Listing $listing)
-        // {
-        //     $formFields = $request->validate([
-        //         'title' => 'required',
-        //         'company' => ['required', Rule::unique('listings', 'company')->ignore($listing->id)],
-        //         'location' => 'required',
-        //         'email' => 'required',
-        //         'website' => ['required', Rule::unique('listings', 'website')->ignore($listing->id)],
-        //         'tags' => 'required',
-        //         'description' => 'required'
-        //     ]);
-
-        //     $listing->update($formFields);
-
-        //     return redirect('/')->with('status', 'Listing Updated Successfully');
-        // }
-
-        // //delete listing
-        // public function destroy(Listing $listing)
-        // {
-        //     $listing->delete();
-
-        //     return redirect('/')->with('status', 'Listing Deleted Successfully');
-        // }
     }
+    //show edit form
+    public function edit(Listing $listing)
+    {
+        dd($listing->title);
+        return view('listings.edit', ['listing' => $listing]);
+    }
+
+    // //update listing
+    // public function update(Request $request, Listing $listing)
+    // {
+    //     $formFields = $request->validate([
+    //         'title' => 'required',
+    //         'company' => ['required', Rule::unique('listings', 'company')->ignore($listing->id)],
+    //         'location' => 'required',
+    //         'email' => 'required',
+    //         'website' => ['required', Rule::unique('listings', 'website')->ignore($listing->id)],
+    //         'tags' => 'required',
+    //         'description' => 'required'
+    //     ]);
+
+    //     $listing->update($formFields);
+
+    //     return redirect('/')->with('status', 'Listing Updated Successfully');
+    // }
+
+    // //delete listing
+    // public function destroy(Listing $listing)
+    // {
+    //     $listing->delete();
+
+    //     return redirect('/')->with('status', 'Listing Deleted Successfully');
+    // }
 }
