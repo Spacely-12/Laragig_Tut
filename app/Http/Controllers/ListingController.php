@@ -70,10 +70,36 @@ class ListingController extends Controller
     //show edit form
     public function edit(Listing $listing)
     {
-        dd($listing->title);
+        //  dd($listing);
         return view('listings.edit', ['listing' => $listing]);
     }
 
+    //update forms data
+    public function update(Request $request, Listing $listing)
+    {
+        // dd($request->file('logo')->store());
+        $formFields = $request->validate([
+            'title' => 'required',
+            'company' => 'required',
+            'location' => 'required',
+            'email' => 'required',
+            'website' => 'required',
+            'tags' => 'required',
+            'description' => 'required'
+        ]);
+
+        if ($request->hasFile('logo')) {
+            $formFields['logo'] = $request->file('logo')->store('logos', 'public');
+        }
+
+        $listing->update($formFields);
+
+
+        session()->flash('message');
+
+        return back()->with('message', 'Listing Updated Successfully');
+    }
+}
     // //update listing
     // public function update(Request $request, Listing $listing)
     // {
@@ -99,4 +125,4 @@ class ListingController extends Controller
 
     //     return redirect('/')->with('status', 'Listing Deleted Successfully');
     // }
-}
+//}
