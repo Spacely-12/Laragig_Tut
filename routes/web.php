@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ListingController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Listing;
 
@@ -20,6 +21,15 @@ Route::get('/listings/{listing}/edit', [ListingController::class, 'edit']);
 //Edit Submit to update
 Route::put('/listings/{listing}', [ListingController::class, 'update']);
 
+//Delete Listing
+Route::delete('/listings/{listing}', [ListingController::class, 'destroy']);
+
 
 // Single listing
 Route::get('/listings/{listing}', [ListingController::class, 'show']);
+
+//Show register/create form
+Route::get('/register', [UserController::class, 'create']);
+
+//Show login form
+Route::get('/login', [UserController::class, 'login']);
