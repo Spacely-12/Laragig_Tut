@@ -21,7 +21,7 @@ class UserController extends Controller
       $formFields = $request->validate([
         'name' => ['required', 'min:3'],
         'email' => ['required', 'email', Rule::unique('users','email')],
-        'password' => ['required|confirmed|min:6'] 
+        'password' => ['required','confirmed', 'min:6'] 
       ]);
         //hash password
         $formFields['password'] = bcrypt($formFields['password']);
@@ -30,9 +30,10 @@ class UserController extends Controller
         $user = User::create($formFields);
 
         //login the user
-        auth()->login($user);
+        Auth::login($user);
+
         //redirect to the home page
-        return redirect('/')->with('success', 'Account created successfully');
+        return redirect('/')->with('message', 'Account created successfully');
     }
     //login function
     public function login(){

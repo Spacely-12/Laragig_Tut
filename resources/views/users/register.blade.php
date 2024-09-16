@@ -49,7 +49,7 @@
                     Confirm Password
                 </label>
                 <input type="password" class="border text-black border-gray-200 rounded p-2 w-full"
-                    name="password_confirmation  " />
+                    name="password_confirmation" />
                 @error('password_confirmation')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror

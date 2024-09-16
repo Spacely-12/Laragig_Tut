@@ -97,7 +97,7 @@ class ListingController extends Controller
 
         session()->flash('message');
 
-        return back()->with('message', 'Listing Updated Successfully');
+        return redirect('/')->with('message', 'Listing Updated Successfully');
     }
 
     public function destroy(Listing $listing){
